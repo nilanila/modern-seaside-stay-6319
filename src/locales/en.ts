@@ -4,6 +4,7 @@ export const en = {
     apartments: "Apartments",
     amenities: "Amenities",
     gallery: "Gallery",
+    prices: "Prices",
     contact: "Contact",
     bookNow: "Book Now"
   },
