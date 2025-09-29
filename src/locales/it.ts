@@ -10,7 +10,7 @@ export const it = {
   },
   hero: {
     subtitle: "ALLOGGI DI LUSSO SUL MARE",
-    title: "Cosa vuoi costruire oggi",
+    title: "Prenota il tuo soggiorno",
     description: "Scopri la nostra esclusiva collezione di appartamenti di lusso e camere d'albergo sul mare, che offrono comfort impareggiabile e viste mozzafiato sul mare.",
     bookStay: "Prenota il tuo Soggiorno",
     exploreApartments: "Esplora gli Appartamenti",
