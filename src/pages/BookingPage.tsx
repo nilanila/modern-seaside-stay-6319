@@ -160,7 +160,7 @@ export default function BookingPage() {
           <div className="container relative z-10">
             <div className="max-w-3xl mx-auto text-center animate-fade-in">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-                Book Your Stay
+                Book
               </h1>
               <p className="text-muted-foreground text-lg">
                 Complete your reservation in a few simple steps.

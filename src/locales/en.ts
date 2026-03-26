@@ -10,9 +10,9 @@ export const en = {
   },
   hero: {
     subtitle: "BEACHFRONT LUXURY ACCOMMODATION",
-    title: "Book your stay",
+    title: "Book",
     description: "Discover our exclusive collection of luxury beachfront apartments and hotel rooms, offering unparalleled comfort and breathtaking sea views.",
-    bookStay: "Book Your Stay",
+    bookStay: "Book",
     exploreApartments: "Explore Apartments",
     scrollDown: "Scroll Down"
   },
@@ -27,7 +27,7 @@ export const en = {
     allRights: "All rights reserved."
   },
   bookingForm: {
-    title: "Book Your Stay",
+    title: "Book",
     checkIn: "Check-in Date",
     checkOut: "Check-out Date",
     adults: "Adults",
@@ -56,7 +56,7 @@ export const en = {
       learnMore: "Learn More"
     },
     booking: {
-      subtitle: "Book Your Stay",
+      subtitle: "Book",
       title: "Reserve Your Perfect Getaway",
       description: "Take the first step towards your dream vacation by checking availability and securing your preferred dates. Our simple booking process ensures a seamless experience from reservation to arrival.",
       benefits: ["Instant confirmation", "Best rate guarantee", "Flexible cancellation options", "Secure payment"]
@@ -139,7 +139,7 @@ export const en = {
     }
   },
   booking: {
-    title: "Book Your Stay",
+    title: "Book",
     subtitle: "Complete your reservation in a few simple steps.",
     steps: {
       chooseRoom: "Choose Room",
