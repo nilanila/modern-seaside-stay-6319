@@ -20,7 +20,7 @@ fail() { printf '[startup] ERROR: %s\n' "$*" >&2; exit 1; }
 
 _ps="$(ps -ax -o args= 2>/dev/null)"
 if grep -q 'dind.sh air-workspace-start.sh' <<<"$_ps"; then WARMUP=; else WARMUP=1; fi
-log "mode: ${WARMUP:+WARMUP}${WARMUP:-TASK}  repo: $REPO_DIR"
+log "mode: ${WARMUP:+WARMUP}${WARMUP:-TASK} | repo: $REPO_DIR"
 
 cd "$REPO_DIR" || fail "repository directory $REPO_DIR is missing"
 
