@@ -1,4 +1,5 @@
 # Welcome to your Lovable project
+QA seat 4 marker: naïve café 🚀 résumé
 
 ## Project info
 
