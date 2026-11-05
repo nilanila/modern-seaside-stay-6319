@@ -2,8 +2,10 @@
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ThemeToggle() {
+  const { t } = useLanguage();
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -43,7 +45,7 @@ export default function ThemeToggle() {
       ) : (
         <Moon className="h-5 w-5 transition-transform duration-500 rotate-0" />
       )}
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">{t.nav.toggleTheme}</span>
     </Button>
   );
 }

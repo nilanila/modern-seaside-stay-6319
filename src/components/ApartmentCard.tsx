@@ -5,6 +5,7 @@ import { Users, Maximize, MapPin, Bath, Coffee, Wifi } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { lookup } from "@/lib/translate";
 
 export interface ApartmentProps {
   id: string;
@@ -51,7 +52,7 @@ export default function ApartmentCard({ apartment }: { apartment: ApartmentProps
             <h3 className="text-white text-xl font-bold mb-1">{translatedName}</h3>
             <div className="flex items-center text-white/80 text-sm mb-2">
               <MapPin className="h-4 w-4 mr-1" />
-              <span>{apartment.location}</span>
+              <span>{lookup(t.apartments.locations, apartment.location)}</span>
             </div>
             <div className="flex items-center space-x-3 text-white">
               <div className="flex items-center">
@@ -80,7 +81,7 @@ export default function ApartmentCard({ apartment }: { apartment: ApartmentProps
               {feature === "Bathroom" && <Bath className="h-3.5 w-3.5 mr-1" />}
               {feature === "Kitchen" && <Coffee className="h-3.5 w-3.5 mr-1" />}
               {feature === "Wi-Fi" && <Wifi className="h-3.5 w-3.5 mr-1" />}
-              <span>{feature}</span>
+              <span>{lookup(t.apartments.features, feature)}</span>
             </div>
           ))}
           {apartment.features.length > 3 && (

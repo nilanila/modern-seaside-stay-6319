@@ -6,7 +6,9 @@ export const en = {
     gallery: "Gallery",
     prices: "Prices",
     contact: "Contact",
-    bookNow: "Book Now"
+    bookNow: "Book Now",
+    toggleTheme: "Toggle theme",
+    selectLanguage: "Select language"
   },
   hero: {
     subtitle: "BEACHFRONT LUXURY ACCOMMODATION",
@@ -35,6 +37,7 @@ export const en = {
     adult: "Adult",
     child: "Child",
     selectDate: "Select date",
+    select: "Select",
     checkAvailability: "Check Availability",
     bookingConfirmed: "Booking Confirmed!"
   },
@@ -54,6 +57,11 @@ export const en = {
       description1: "Nestled on the pristine Mediterranean coastline, MareSereno offers an exquisite collection of luxury apartments and hotel rooms. Our beachfront accommodations combine elegant design with modern comfort, creating the perfect setting for an unforgettable seaside getaway.",
       description2: "Whether you're seeking a romantic escape, a family vacation, or a peaceful retreat, our diverse range of accommodations caters to every preference and need. Each space is thoughtfully designed to provide panoramic sea views and direct beach access.",
       learnMore: "Learn More"
+    },
+    images: {
+      seasideView: "Seaside view",
+      luxuryInterior: "Luxury apartment interior",
+      poolView: "Pool view"
     },
     booking: {
       subtitle: "Book Your Stay",
@@ -126,6 +134,27 @@ export const en = {
       viewDetails: "View Details",
       features: "features",
       more: "more"
+    },
+    locations: {
+      "Beachfront": "Beachfront",
+      "Second row": "Second row",
+      "Hotel building": "Hotel building",
+      "Garden area": "Garden area"
+    },
+    features: {
+      "Wi-Fi": "Wi-Fi",
+      "Kitchen": "Kitchen",
+      "Kitchenette": "Kitchenette",
+      "Full Kitchen": "Full Kitchen",
+      "Bathroom": "Bathroom",
+      "2 Bathrooms": "2 Bathrooms",
+      "Air Conditioning": "Air Conditioning",
+      "TV": "TV",
+      "Balcony": "Balcony",
+      "Terrace": "Terrace",
+      "Jacuzzi": "Jacuzzi",
+      "Washing Machine": "Washing Machine",
+      "Mini Fridge": "Mini Fridge"
     }
   },
   gallery: {
@@ -154,7 +183,8 @@ export const en = {
       children: "Children",
       adult: "Adult",
       child: "Child",
-      selectDate: "Select date"
+      selectDate: "Select date",
+      select: "Select"
     },
     accommodationSelect: {
       title: "Select Your Accommodation",
@@ -198,7 +228,8 @@ export const en = {
       nights: "nights",
       cleaningFee: "Cleaning fee",
       serviceFee: "Service fee",
-      total: "Total"
+      total: "Total",
+      notSelected: "Not selected"
     },
     confirmation: {
       title: "Review Booking Details",
@@ -223,7 +254,10 @@ export const en = {
       success: "Booking Confirmed!",
       emailSent: "Your reservation has been successfully confirmed. A confirmation email has been sent to",
       bookingReference: "Booking Reference",
-      returnToHome: "Return to Homepage"
+      returnToHome: "Return to Homepage",
+      reviewConfirm: "Review & Confirm",
+      endingIn: "ending in",
+      and: "and"
     }
   },
   contact: {
@@ -247,6 +281,11 @@ export const en = {
     thankYou: "Thank you for reaching out. We'll respond to your message as soon as possible.",
     faq: "Frequently Asked Questions",
     faqSubtitle: "Find quick answers to commonly asked questions about our accommodations and services.",
+    namePlaceholder: "John Doe",
+    emailPlaceholder: "john@example.com",
+    phonePlaceholder: "+1 234 567 8900",
+    subjectPlaceholder: "Reservation Inquiry",
+    mapTitle: "Location Map",
     questions: {
       checkInOut: {
         question: "What are your check-in and check-out times?",

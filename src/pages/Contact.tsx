@@ -144,7 +144,7 @@ export default function Contact() {
                     style={{ border: 0 }} 
                     allowFullScreen 
                     loading="lazy"
-                    title="Location Map"
+                    title={t.contact.mapTitle}
                   />
                 </div>
               </div>
@@ -164,7 +164,7 @@ export default function Contact() {
                             name="name"
                             value={formData.name}
                             onChange={handleInputChange}
-                            placeholder="John Doe" 
+                            placeholder={t.contact.namePlaceholder} 
                             required 
                           />
                         </div>
@@ -177,7 +177,7 @@ export default function Contact() {
                             type="email"
                             value={formData.email}
                             onChange={handleInputChange}
-                            placeholder="john@example.com" 
+                            placeholder={t.contact.emailPlaceholder} 
                             required 
                           />
                         </div>
@@ -191,7 +191,7 @@ export default function Contact() {
                             name="phone"
                             value={formData.phone}
                             onChange={handleInputChange}
-                            placeholder="+1 234 567 8900" 
+                            placeholder={t.contact.phonePlaceholder} 
                           />
                         </div>
                         
@@ -202,7 +202,7 @@ export default function Contact() {
                             name="subject"
                             value={formData.subject}
                             onChange={handleInputChange}
-                            placeholder="Reservation Inquiry" 
+                            placeholder={t.contact.subjectPlaceholder} 
                             required 
                           />
                         </div>

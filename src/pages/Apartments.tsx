@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { lookup } from "@/lib/translate";
 
 // Sample apartments data (will use translations from context)
 const allApartments: ApartmentProps[] = [
@@ -180,7 +181,7 @@ export default function Apartments() {
                   <SelectContent>
                     <SelectItem value="all">{t.apartments.filters.allLocations}</SelectItem>
                     {locations.filter(loc => loc !== "all").map(location => (
-                      <SelectItem key={location} value={location}>{location}</SelectItem>
+                      <SelectItem key={location} value={location}>{lookup(t.apartments.locations, location)}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>

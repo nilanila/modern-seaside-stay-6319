@@ -20,7 +20,7 @@ import {
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function BookingForm() {
-  const { t } = useLanguage();
+  const { t, dateLocale } = useLanguage();
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
   const [adults, setAdults] = useState("2");
@@ -64,7 +64,7 @@ export default function BookingForm() {
                   )}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
-                  {startDate ? format(startDate, "PPP") : <span>{t.bookingForm.selectDate}</span>}
+                  {startDate ? format(startDate, "PPP", { locale: dateLocale }) : <span>{t.bookingForm.selectDate}</span>}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0" align="start">
@@ -73,6 +73,7 @@ export default function BookingForm() {
                   selected={startDate}
                   onSelect={setStartDate}
                   initialFocus
+                  locale={dateLocale}
                   disabled={(date) => date < new Date()}
                   className="pointer-events-auto"
                 />
@@ -96,7 +97,7 @@ export default function BookingForm() {
                   )}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
-                  {endDate ? format(endDate, "PPP") : <span>{t.bookingForm.selectDate}</span>}
+                  {endDate ? format(endDate, "PPP", { locale: dateLocale }) : <span>{t.bookingForm.selectDate}</span>}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0" align="start">
@@ -105,6 +106,7 @@ export default function BookingForm() {
                   selected={endDate}
                   onSelect={setEndDate}
                   initialFocus
+                  locale={dateLocale}
                   disabled={(date) => date < (startDate || new Date())}
                   className="pointer-events-auto"
                 />
@@ -121,7 +123,7 @@ export default function BookingForm() {
             </label>
             <Select value={adults} onValueChange={setAdults}>
               <SelectTrigger id="adults" className="w-full">
-                <SelectValue placeholder="Select" />
+                <SelectValue placeholder={t.bookingForm.select} />
               </SelectTrigger>
               <SelectContent>
                 {[1, 2, 3, 4, 5, 6].map((num) => (
@@ -140,7 +142,7 @@ export default function BookingForm() {
             </label>
             <Select value={children} onValueChange={setChildren}>
               <SelectTrigger id="children" className="w-full">
-                <SelectValue placeholder="Select" />
+                <SelectValue placeholder={t.bookingForm.select} />
               </SelectTrigger>
               <SelectContent>
                 {[0, 1, 2, 3, 4].map((num) => (

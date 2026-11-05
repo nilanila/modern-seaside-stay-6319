@@ -6,7 +6,9 @@ export const it = {
     gallery: "Galleria",
     prices: "Prezzi",
     contact: "Contatti",
-    bookNow: "Prenota Ora"
+    bookNow: "Prenota Ora",
+    toggleTheme: "Cambia tema",
+    selectLanguage: "Seleziona lingua"
   },
   hero: {
     subtitle: "ALLOGGI DI LUSSO SUL MARE",
@@ -35,6 +37,7 @@ export const it = {
     adult: "Adulto",
     child: "Bambino",
     selectDate: "Seleziona data",
+    select: "Seleziona",
     checkAvailability: "Verifica Disponibilità",
     bookingConfirmed: "Prenotazione Confermata!"
   },
@@ -69,6 +72,27 @@ export const it = {
       viewDetails: "Visualizza Dettagli",
       features: "caratteristiche",
       more: "altro"
+    },
+    locations: {
+      "Beachfront": "Fronte mare",
+      "Second row": "Seconda fila",
+      "Hotel building": "Edificio dell'hotel",
+      "Garden area": "Zona giardino"
+    },
+    features: {
+      "Wi-Fi": "Wi-Fi",
+      "Kitchen": "Cucina",
+      "Kitchenette": "Angolo cottura",
+      "Full Kitchen": "Cucina completa",
+      "Bathroom": "Bagno",
+      "2 Bathrooms": "2 Bagni",
+      "Air Conditioning": "Aria condizionata",
+      "TV": "TV",
+      "Balcony": "Balcone",
+      "Terrace": "Terrazza",
+      "Jacuzzi": "Jacuzzi",
+      "Washing Machine": "Lavatrice",
+      "Mini Fridge": "Mini frigo"
     }
   },
   gallery: {
@@ -97,7 +121,8 @@ export const it = {
       children: "Bambini",
       adult: "Adulto",
       child: "Bambino",
-      selectDate: "Seleziona data"
+      selectDate: "Seleziona data",
+      select: "Seleziona"
     },
     accommodationSelect: {
       title: "Seleziona il tuo Alloggio",
@@ -141,7 +166,8 @@ export const it = {
       nights: "notti",
       cleaningFee: "Costo pulizie",
       serviceFee: "Costo servizio",
-      total: "Totale"
+      total: "Totale",
+      notSelected: "Non selezionato"
     },
     confirmation: {
       title: "Rivedi Dettagli Prenotazione",
@@ -166,7 +192,10 @@ export const it = {
       success: "Prenotazione Confermata!",
       emailSent: "La tua prenotazione è stata confermata con successo. Una email di conferma è stata inviata a",
       bookingReference: "Riferimento Prenotazione",
-      returnToHome: "Torna alla Homepage"
+      returnToHome: "Torna alla Homepage",
+      reviewConfirm: "Rivedi e Conferma",
+      endingIn: "che termina con",
+      and: "e"
     }
   },
   contact: {
@@ -190,6 +219,11 @@ export const it = {
     thankYou: "Grazie per averci contattato. Risponderemo al tuo messaggio il prima possibile.",
     faq: "Domande Frequenti",
     faqSubtitle: "Trova risposte rapide alle domande più comuni sui nostri alloggi e servizi.",
+    namePlaceholder: "Mario Rossi",
+    emailPlaceholder: "mario@esempio.it",
+    phonePlaceholder: "+39 333 123 4567",
+    subjectPlaceholder: "Richiesta di Prenotazione",
+    mapTitle: "Mappa della Posizione",
     questions: {
       checkInOut: {
         question: "Quali sono gli orari di check-in e check-out?",
@@ -224,6 +258,11 @@ export const it = {
       description1: "Situato sulla incontaminata costa mediterranea, MareSereno offre una squisita collezione di appartamenti di lusso e camere d'albergo. I nostri alloggi fronte mare combinano un design elegante con comfort moderni, creando l'ambientazione perfetta per una indimenticabile fuga al mare.",
       description2: "Che tu stia cercando una fuga romantica, una vacanza in famiglia o un ritiro tranquillo, la nostra vasta gamma di alloggi si adatta a ogni preferenza ed esigenza. Ogni spazio è progettato con cura per fornire viste panoramiche sul mare e accesso diretto alla spiaggia.",
       learnMore: "Scopri di Più"
+    },
+    images: {
+      seasideView: "Vista sul mare",
+      luxuryInterior: "Interno di un appartamento di lusso",
+      poolView: "Vista sulla piscina"
     },
     booking: {
       subtitle: "Prenota il tuo Soggiorno",
