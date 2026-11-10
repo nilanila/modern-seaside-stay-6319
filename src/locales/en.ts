@@ -161,7 +161,8 @@ export const en = {
       guests: "Guests",
       selected: "Selected",
       select: "Select",
-      continue: "Continue"
+      continue: "Continue",
+      perNight: "/ night"
     },
     guestInfo: {
       title: "Guest Information",
@@ -198,7 +199,8 @@ export const en = {
       nights: "nights",
       cleaningFee: "Cleaning fee",
       serviceFee: "Service fee",
-      total: "Total"
+      total: "Total",
+      notSelected: "Not selected"
     },
     confirmation: {
       title: "Review Booking Details",
@@ -217,9 +219,12 @@ export const en = {
       termsAgree: "I agree to the",
       termsLink: "Terms and Conditions",
       privacyLink: "Privacy Policy",
+      and: "and",
       cancellationInfo: "I understand that my booking is subject to the property's cancellation policy.",
       back: "Back",
       confirmBooking: "Confirm Booking",
+      reviewConfirm: "Review & Confirm",
+      endingIn: "ending in",
       success: "Booking Confirmed!",
       emailSent: "Your reservation has been successfully confirmed. A confirmation email has been sent to",
       bookingReference: "Booking Reference",

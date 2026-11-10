@@ -24,6 +24,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ApartmentProps } from "@/components/ApartmentCard";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Sample apartments data
 const apartmentsData: ApartmentProps[] = [
@@ -63,6 +64,16 @@ const apartmentsData: ApartmentProps[] = [
 ];
 
 export default function BookingPage() {
+  const { t, language, dateLocale } = useLanguage();
+  const tb = t.booking;
+  const localizedApartment = (apartment: ApartmentProps): ApartmentProps => {
+    const translated = language !== 'en' ? t.apartmentDescriptions[apartment.id] : undefined;
+    return translated
+      ? { ...apartment, name: translated.name, description: translated.description }
+      : apartment;
+  };
+  const apartments = apartmentsData.map(localizedApartment);
+  const formatDate = (date: Date, pattern: string) => format(date, pattern, { locale: dateLocale });
   const [startDate, setStartDate] = useState<Date | undefined>(new Date());
   const [endDate, setEndDate] = useState<Date | undefined>(addDays(new Date(), 7));
   const [adults, setAdults] = useState("2");
@@ -160,10 +171,10 @@ export default function BookingPage() {
           <div className="container relative z-10">
             <div className="max-w-3xl mx-auto text-center animate-fade-in">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-                Book Your Stay
+                {tb.title}
               </h1>
               <p className="text-muted-foreground text-lg">
-                Complete your reservation in a few simple steps.
+                {tb.subtitle}
               </p>
             </div>
           </div>
@@ -203,7 +214,7 @@ export default function BookingPage() {
                         : "text-muted-foreground"
                     )}
                   >
-                    {step === 1 ? "Choose Room" : step === 2 ? "Guest Details" : "Confirmation"}
+                    {step === 1 ? tb.steps.chooseRoom : step === 2 ? tb.steps.guestDetails : tb.steps.confirmation}
                   </span>
                 </div>
               ))}
@@ -224,12 +235,12 @@ export default function BookingPage() {
               <div className="max-w-4xl mx-auto">
                 {/* Date and Guests Selection */}
                 <div className="glass-card p-6 mb-8">
-                  <h2 className="text-xl font-semibold mb-4">Select Dates and Guests</h2>
+                  <h2 className="text-xl font-semibold mb-4">{tb.dates.selectDates}</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {/* Check-in Date */}
                     <div className="space-y-2">
                       <label htmlFor="check-in" className="block text-sm font-medium">
-                        Check-in Date
+                        {tb.dates.checkIn}
                       </label>
                       <Popover>
                         <PopoverTrigger asChild>
@@ -242,7 +253,7 @@ export default function BookingPage() {
                             )}
                           >
                             <CalendarIcon className="mr-2 h-4 w-4" />
-                            {startDate ? format(startDate, "PPP") : <span>Select date</span>}
+                            {startDate ? formatDate(startDate, "PPP") : <span>{tb.dates.selectDate}</span>}
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
@@ -251,6 +262,7 @@ export default function BookingPage() {
                             selected={startDate}
                             onSelect={setStartDate}
                             initialFocus
+                            locale={dateLocale}
                             disabled={(date) => date < new Date()}
                             className="pointer-events-auto"
                           />
@@ -261,7 +273,7 @@ export default function BookingPage() {
                     {/* Check-out Date */}
                     <div className="space-y-2">
                       <label htmlFor="check-out" className="block text-sm font-medium">
-                        Check-out Date
+                        {tb.dates.checkOut}
                       </label>
                       <Popover>
                         <PopoverTrigger asChild>
@@ -274,7 +286,7 @@ export default function BookingPage() {
                             )}
                           >
                             <CalendarIcon className="mr-2 h-4 w-4" />
-                            {endDate ? format(endDate, "PPP") : <span>Select date</span>}
+                            {endDate ? formatDate(endDate, "PPP") : <span>{tb.dates.selectDate}</span>}
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
@@ -283,6 +295,7 @@ export default function BookingPage() {
                             selected={endDate}
                             onSelect={setEndDate}
                             initialFocus
+                            locale={dateLocale}
                             disabled={(date) => date < (startDate || new Date())}
                             className="pointer-events-auto"
                           />
@@ -293,16 +306,16 @@ export default function BookingPage() {
                     {/* Adults */}
                     <div className="space-y-2">
                       <label htmlFor="adults" className="block text-sm font-medium">
-                        Adults
+                        {tb.dates.adults}
                       </label>
                       <Select value={adults} onValueChange={setAdults}>
                         <SelectTrigger id="adults" className="w-full">
-                          <SelectValue placeholder="Select" />
+                          <SelectValue placeholder={tb.accommodationSelect.select} />
                         </SelectTrigger>
                         <SelectContent>
                           {[1, 2, 3, 4, 5, 6].map((num) => (
                             <SelectItem key={num} value={num.toString()}>
-                              {num} {num === 1 ? "Adult" : "Adults"}
+                              {num} {num === 1 ? tb.dates.adult : tb.dates.adults}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -312,16 +325,16 @@ export default function BookingPage() {
                     {/* Children */}
                     <div className="space-y-2">
                       <label htmlFor="children" className="block text-sm font-medium">
-                        Children
+                        {tb.dates.children}
                       </label>
                       <Select value={children} onValueChange={setChildren}>
                         <SelectTrigger id="children" className="w-full">
-                          <SelectValue placeholder="Select" />
+                          <SelectValue placeholder={tb.accommodationSelect.select} />
                         </SelectTrigger>
                         <SelectContent>
                           {[0, 1, 2, 3, 4].map((num) => (
                             <SelectItem key={num} value={num.toString()}>
-                              {num} {num === 1 ? "Child" : "Children"}
+                              {num} {num === 1 ? tb.dates.child : tb.dates.children}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -331,9 +344,9 @@ export default function BookingPage() {
                 </div>
                 
                 {/* Apartments Selection */}
-                <h2 className="text-xl font-semibold mb-4">Select Your Accommodation</h2>
+                <h2 className="text-xl font-semibold mb-4">{tb.accommodationSelect.title}</h2>
                 <div className="space-y-6">
-                  {apartmentsData.map((apartment) => (
+                  {apartments.map((apartment) => (
                     <div 
                       key={apartment.id}
                       className={cn(
@@ -356,7 +369,7 @@ export default function BookingPage() {
                           <p className="text-muted-foreground mb-4">{apartment.description}</p>
                           <div className="flex flex-wrap gap-2 mb-4">
                             <div className="text-sm bg-muted px-3 py-1 rounded-full">
-                              {apartment.capacity} Guests
+                              {apartment.capacity} {tb.accommodationSelect.guests}
                             </div>
                             <div className="text-sm bg-muted px-3 py-1 rounded-full">
                               {apartment.size} m²
@@ -369,7 +382,7 @@ export default function BookingPage() {
                         <div className="flex items-center justify-between mt-4">
                           <div>
                             <span className="text-xl font-bold">${apartment.price}</span>
-                            <span className="text-muted-foreground text-sm"> / night</span>
+                            <span className="text-muted-foreground text-sm"> {tb.accommodationSelect.perNight}</span>
                           </div>
                           <Button 
                             variant={selectedApartment?.id === apartment.id ? "default" : "outline"}
@@ -379,10 +392,10 @@ export default function BookingPage() {
                             {selectedApartment?.id === apartment.id ? (
                               <>
                                 <Check className="mr-2 h-4 w-4" />
-                                Selected
+                                {tb.accommodationSelect.selected}
                               </>
                             ) : (
-                              "Select"
+                              tb.accommodationSelect.select
                             )}
                           </Button>
                         </div>
@@ -397,7 +410,7 @@ export default function BookingPage() {
                     disabled={!selectedApartment}
                     onClick={() => setCurrentStep(2)}
                   >
-                    Continue <ChevronRight className="ml-2 h-4 w-4" />
+                    {tb.accommodationSelect.continue} <ChevronRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
               </div>
@@ -411,12 +424,12 @@ export default function BookingPage() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {/* Guest Information Form */}
                   <div className="md:col-span-2">
-                    <h2 className="text-xl font-semibold mb-4">Guest Information</h2>
+                    <h2 className="text-xl font-semibold mb-4">{tb.guestInfo.title}</h2>
                     <form className="space-y-6">
                       <div className="glass-card p-6 space-y-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div className="space-y-2">
-                            <Label htmlFor="firstName">First Name</Label>
+                            <Label htmlFor="firstName">{tb.guestInfo.firstName}</Label>
                             <Input 
                               id="firstName" 
                               name="firstName" 
@@ -426,7 +439,7 @@ export default function BookingPage() {
                             />
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="lastName">Last Name</Label>
+                            <Label htmlFor="lastName">{tb.guestInfo.lastName}</Label>
                             <Input 
                               id="lastName" 
                               name="lastName" 
@@ -439,7 +452,7 @@ export default function BookingPage() {
                         
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
+                            <Label htmlFor="email">{tb.guestInfo.email}</Label>
                             <Input 
                               id="email" 
                               name="email" 
@@ -450,7 +463,7 @@ export default function BookingPage() {
                             />
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="phone">Phone</Label>
+                            <Label htmlFor="phone">{tb.guestInfo.phone}</Label>
                             <Input 
                               id="phone" 
                               name="phone" 
@@ -462,7 +475,7 @@ export default function BookingPage() {
                         </div>
                         
                         <div className="space-y-2">
-                          <Label htmlFor="address">Address</Label>
+                          <Label htmlFor="address">{tb.guestInfo.address}</Label>
                           <Input 
                             id="address" 
                             name="address" 
@@ -474,7 +487,7 @@ export default function BookingPage() {
                         
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                           <div className="space-y-2">
-                            <Label htmlFor="city">City</Label>
+                            <Label htmlFor="city">{tb.guestInfo.city}</Label>
                             <Input 
                               id="city" 
                               name="city" 
@@ -484,7 +497,7 @@ export default function BookingPage() {
                             />
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="zipCode">Zip Code</Label>
+                            <Label htmlFor="zipCode">{tb.guestInfo.zipCode}</Label>
                             <Input 
                               id="zipCode" 
                               name="zipCode" 
@@ -494,7 +507,7 @@ export default function BookingPage() {
                             />
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="country">Country</Label>
+                            <Label htmlFor="country">{tb.guestInfo.country}</Label>
                             <Input 
                               id="country" 
                               name="country" 
@@ -506,28 +519,28 @@ export default function BookingPage() {
                         </div>
                         
                         <div className="space-y-2">
-                          <Label htmlFor="specialRequests">Special Requests</Label>
+                          <Label htmlFor="specialRequests">{tb.guestInfo.specialRequests}</Label>
                           <textarea 
                             id="specialRequests" 
                             name="specialRequests" 
                             value={formData.specialRequests} 
                             onChange={handleInputChange}
                             className="w-full h-24 rounded-md border border-input bg-background px-3 py-2 text-sm"
-                            placeholder="Any special requests or notes for your stay"
+                            placeholder={tb.guestInfo.specialRequestsPlaceholder}
                           />
                         </div>
                       </div>
                       
-                      <h2 className="text-xl font-semibold mb-4">Payment Information</h2>
+                      <h2 className="text-xl font-semibold mb-4">{tb.payment.title}</h2>
                       <div className="glass-card p-6 space-y-6">
                         <Tabs defaultValue="credit-card" onValueChange={(value) => handleSelectChange("paymentMethod", value)}>
                           <TabsList className="grid w-full grid-cols-2">
-                            <TabsTrigger value="credit-card">Credit Card</TabsTrigger>
-                            <TabsTrigger value="pay-at-property">Pay at Property</TabsTrigger>
+                            <TabsTrigger value="credit-card">{tb.payment.creditCard}</TabsTrigger>
+                            <TabsTrigger value="pay-at-property">{tb.payment.payAtProperty}</TabsTrigger>
                           </TabsList>
                           <TabsContent value="credit-card" className="space-y-4 mt-4">
                             <div className="space-y-2">
-                              <Label htmlFor="cardName">Name on Card</Label>
+                              <Label htmlFor="cardName">{tb.payment.nameOnCard}</Label>
                               <Input 
                                 id="cardName" 
                                 name="cardName" 
@@ -536,42 +549,41 @@ export default function BookingPage() {
                               />
                             </div>
                             <div className="space-y-2">
-                              <Label htmlFor="cardNumber">Card Number</Label>
+                              <Label htmlFor="cardNumber">{tb.payment.cardNumber}</Label>
                               <Input 
                                 id="cardNumber" 
                                 name="cardNumber" 
                                 value={formData.cardNumber} 
                                 onChange={handleInputChange}
-                                placeholder="0000 0000 0000 0000" 
+                                placeholder={tb.payment.cardNumberPlaceholder} 
                               />
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                               <div className="space-y-2">
-                                <Label htmlFor="cardExpiry">Expiry Date</Label>
+                                <Label htmlFor="cardExpiry">{tb.payment.expiryDate}</Label>
                                 <Input 
                                   id="cardExpiry" 
                                   name="cardExpiry" 
                                   value={formData.cardExpiry} 
                                   onChange={handleInputChange}
-                                  placeholder="MM/YY" 
+                                  placeholder={tb.payment.expiryDatePlaceholder} 
                                 />
                               </div>
                               <div className="space-y-2">
-                                <Label htmlFor="cardCvc">CVC</Label>
+                                <Label htmlFor="cardCvc">{tb.payment.cvc}</Label>
                                 <Input 
                                   id="cardCvc" 
                                   name="cardCvc" 
                                   value={formData.cardCvc} 
                                   onChange={handleInputChange}
-                                  placeholder="123" 
+                                  placeholder={tb.payment.cvcPlaceholder} 
                                 />
                               </div>
                             </div>
                           </TabsContent>
                           <TabsContent value="pay-at-property" className="mt-4">
                             <p className="text-muted-foreground">
-                              You will be required to provide a valid credit card upon arrival for security purposes, 
-                              but payment will be collected during your stay at the property.
+                              {tb.payment.payAtPropertyInfo}
                             </p>
                           </TabsContent>
                         </Tabs>
@@ -581,7 +593,7 @@ export default function BookingPage() {
                   
                   {/* Booking Summary */}
                   <div className="md:col-span-1">
-                    <h2 className="text-xl font-semibold mb-4">Booking Summary</h2>
+                    <h2 className="text-xl font-semibold mb-4">{tb.summary.title}</h2>
                     <div className="glass-card p-6 sticky top-24">
                       {selectedApartment && (
                         <>
@@ -592,22 +604,22 @@ export default function BookingPage() {
                           
                           <div className="py-4 border-b space-y-2">
                             <div className="flex justify-between items-center">
-                              <span>Check-in</span>
+                              <span>{tb.summary.checkIn}</span>
                               <span className="font-medium">
-                                {startDate ? format(startDate, "EEE, MMM d, yyyy") : "Not selected"}
+                                {startDate ? formatDate(startDate, "EEE, MMM d, yyyy") : tb.summary.notSelected}
                               </span>
                             </div>
                             <div className="flex justify-between items-center">
-                              <span>Check-out</span>
+                              <span>{tb.summary.checkOut}</span>
                               <span className="font-medium">
-                                {endDate ? format(endDate, "EEE, MMM d, yyyy") : "Not selected"}
+                                {endDate ? formatDate(endDate, "EEE, MMM d, yyyy") : tb.summary.notSelected}
                               </span>
                             </div>
                             <div className="flex justify-between items-center">
-                              <span>Guests</span>
+                              <span>{tb.summary.guests}</span>
                               <span className="font-medium">
-                                {adults} {parseInt(adults) === 1 ? "Adult" : "Adults"}
-                                {parseInt(children) > 0 && `, ${children} ${parseInt(children) === 1 ? "Child" : "Children"}`}
+                                {adults} {parseInt(adults) === 1 ? tb.dates.adult : tb.dates.adults}
+                                {parseInt(children) > 0 && `, ${children} ${parseInt(children) === 1 ? tb.dates.child : tb.dates.children}`}
                               </span>
                             </div>
                           </div>
@@ -615,23 +627,23 @@ export default function BookingPage() {
                           <div className="py-4 border-b space-y-2">
                             <div className="flex justify-between items-center">
                               <span>
-                                ${selectedApartment.price} x {nightsCount} {nightsCount === 1 ? "night" : "nights"}
+                                ${selectedApartment.price} x {nightsCount} {nightsCount === 1 ? tb.summary.night : tb.summary.nights}
                               </span>
                               <span className="font-medium">${selectedApartment.price * nightsCount}</span>
                             </div>
                             <div className="flex justify-between items-center">
-                              <span>Cleaning fee</span>
+                              <span>{tb.summary.cleaningFee}</span>
                               <span className="font-medium">$50</span>
                             </div>
                             <div className="flex justify-between items-center">
-                              <span>Service fee</span>
+                              <span>{tb.summary.serviceFee}</span>
                               <span className="font-medium">$30</span>
                             </div>
                           </div>
                           
                           <div className="pt-4">
                             <div className="flex justify-between items-center font-bold">
-                              <span>Total</span>
+                              <span>{tb.summary.total}</span>
                               <span>${totalPrice + 50 + 30}</span>
                             </div>
                           </div>
@@ -646,13 +658,13 @@ export default function BookingPage() {
                     variant="outline"
                     onClick={() => setCurrentStep(1)}
                   >
-                    Back
+                    {tb.confirmation.back}
                   </Button>
                   <Button 
                     className="btn-primary"
                     onClick={() => setCurrentStep(3)}
                   >
-                    Review & Confirm <ChevronRight className="ml-2 h-4 w-4" />
+                    {tb.confirmation.reviewConfirm} <ChevronRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
               </div>
@@ -665,13 +677,13 @@ export default function BookingPage() {
               <div className="max-w-4xl mx-auto">
                 {!isBookingConfirmed ? (
                   <>
-                    <h2 className="text-xl font-semibold mb-6">Review Booking Details</h2>
+                    <h2 className="text-xl font-semibold mb-6">{tb.confirmation.title}</h2>
                     
                     <div className="glass-card p-6 mb-8">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Apartment Details */}
                         <div>
-                          <h3 className="text-lg font-medium mb-4">Accommodation Details</h3>
+                          <h3 className="text-lg font-medium mb-4">{tb.confirmation.accommodationDetails}</h3>
                           {selectedApartment && (
                             <div className="space-y-4">
                               <div className="rounded-lg overflow-hidden">
@@ -687,22 +699,22 @@ export default function BookingPage() {
                               </div>
                               <div className="space-y-1 text-sm">
                                 <div className="flex justify-between">
-                                  <span>Check-in:</span>
+                                  <span>{tb.summary.checkIn}:</span>
                                   <span className="font-medium">
-                                    {startDate ? format(startDate, "EEE, MMM d, yyyy") : "Not selected"}
+                                    {startDate ? formatDate(startDate, "EEE, MMM d, yyyy") : tb.summary.notSelected}
                                   </span>
                                 </div>
                                 <div className="flex justify-between">
-                                  <span>Check-out:</span>
+                                  <span>{tb.summary.checkOut}:</span>
                                   <span className="font-medium">
-                                    {endDate ? format(endDate, "EEE, MMM d, yyyy") : "Not selected"}
+                                    {endDate ? formatDate(endDate, "EEE, MMM d, yyyy") : tb.summary.notSelected}
                                   </span>
                                 </div>
                                 <div className="flex justify-between">
-                                  <span>Guests:</span>
+                                  <span>{tb.summary.guests}:</span>
                                   <span className="font-medium">
-                                    {adults} {parseInt(adults) === 1 ? "Adult" : "Adults"}
-                                    {parseInt(children) > 0 && `, ${children} ${parseInt(children) === 1 ? "Child" : "Children"}`}
+                                    {adults} {parseInt(adults) === 1 ? tb.dates.adult : tb.dates.adults}
+                                    {parseInt(children) > 0 && `, ${children} ${parseInt(children) === 1 ? tb.dates.child : tb.dates.children}`}
                                   </span>
                                 </div>
                               </div>
@@ -712,52 +724,52 @@ export default function BookingPage() {
                         
                         {/* Guest Details */}
                         <div>
-                          <h3 className="text-lg font-medium mb-4">Guest Details</h3>
+                          <h3 className="text-lg font-medium mb-4">{tb.confirmation.guestDetails}</h3>
                           <div className="space-y-4">
                             <div className="space-y-1 text-sm">
                               <div className="flex justify-between">
-                                <span>Name:</span>
+                                <span>{tb.confirmation.name}:</span>
                                 <span className="font-medium">{formData.firstName} {formData.lastName}</span>
                               </div>
                               <div className="flex justify-between">
-                                <span>Email:</span>
+                                <span>{tb.confirmation.email}:</span>
                                 <span className="font-medium">{formData.email}</span>
                               </div>
                               <div className="flex justify-between">
-                                <span>Phone:</span>
+                                <span>{tb.confirmation.phone}:</span>
                                 <span className="font-medium">{formData.phone}</span>
                               </div>
                               <div className="flex justify-between">
-                                <span>Address:</span>
+                                <span>{tb.confirmation.address}:</span>
                                 <span className="font-medium">{formData.address}</span>
                               </div>
                               <div className="flex justify-between">
-                                <span>City:</span>
+                                <span>{tb.confirmation.city}:</span>
                                 <span className="font-medium">{formData.city}</span>
                               </div>
                               <div className="flex justify-between">
-                                <span>Country:</span>
+                                <span>{tb.confirmation.country}:</span>
                                 <span className="font-medium">{formData.country}</span>
                               </div>
                             </div>
                             
                             {formData.specialRequests && (
                               <div>
-                                <h4 className="font-medium mb-1">Special Requests:</h4>
+                                <h4 className="font-medium mb-1">{tb.confirmation.specialRequests}:</h4>
                                 <p className="text-sm text-muted-foreground">{formData.specialRequests}</p>
                               </div>
                             )}
                             
                             <div>
-                              <h4 className="font-medium mb-1">Payment Method:</h4>
+                              <h4 className="font-medium mb-1">{tb.confirmation.paymentMethod}:</h4>
                               <p className="text-sm">
                                 {formData.paymentMethod === "credit-card" ? (
                                   <span className="flex items-center">
                                     <CreditCard className="h-4 w-4 mr-2" />
-                                    Credit Card (ending in {formData.cardNumber.slice(-4) || "****"})
+                                    {tb.confirmation.creditCard} ({tb.confirmation.endingIn} {formData.cardNumber.slice(-4) || "****"})
                                   </span>
                                 ) : (
-                                  "Pay at Property"
+                                  tb.payment.payAtProperty
                                 )}
                               </p>
                             </div>
@@ -768,26 +780,26 @@ export default function BookingPage() {
                     
                     {/* Price Summary */}
                     <div className="glass-card p-6 mb-8">
-                      <h3 className="text-lg font-medium mb-4">Price Summary</h3>
+                      <h3 className="text-lg font-medium mb-4">{tb.confirmation.priceSummary}</h3>
                       <div className="space-y-2">
                         {selectedApartment && (
                           <>
                             <div className="flex justify-between items-center">
                               <span>
-                                ${selectedApartment.price} x {nightsCount} {nightsCount === 1 ? "night" : "nights"}
+                                ${selectedApartment.price} x {nightsCount} {nightsCount === 1 ? tb.summary.night : tb.summary.nights}
                               </span>
                               <span className="font-medium">${selectedApartment.price * nightsCount}</span>
                             </div>
                             <div className="flex justify-between items-center">
-                              <span>Cleaning fee</span>
+                              <span>{tb.summary.cleaningFee}</span>
                               <span className="font-medium">$50</span>
                             </div>
                             <div className="flex justify-between items-center">
-                              <span>Service fee</span>
+                              <span>{tb.summary.serviceFee}</span>
                               <span className="font-medium">$30</span>
                             </div>
                             <div className="flex justify-between items-center pt-4 border-t mt-4">
-                              <span className="font-semibold">Total</span>
+                              <span className="font-semibold">{tb.summary.total}</span>
                               <span className="font-bold text-xl">${totalPrice + 50 + 30}</span>
                             </div>
                           </>
@@ -804,7 +816,7 @@ export default function BookingPage() {
                           className="mt-1 mr-3"
                         />
                         <label htmlFor="terms" className="text-sm text-muted-foreground">
-                          I agree to the <a href="#" className="text-primary underline">Terms and Conditions</a> and <a href="#" className="text-primary underline">Privacy Policy</a>. I understand that my booking is subject to the property's cancellation policy.
+                          {tb.confirmation.termsAgree} <a href="#" className="text-primary underline">{tb.confirmation.termsLink}</a> {tb.confirmation.and} <a href="#" className="text-primary underline">{tb.confirmation.privacyLink}</a>. {tb.confirmation.cancellationInfo}
                         </label>
                       </div>
                     </div>
@@ -814,13 +826,13 @@ export default function BookingPage() {
                         variant="outline"
                         onClick={() => setCurrentStep(2)}
                       >
-                        Back
+                        {tb.confirmation.back}
                       </Button>
                       <Button 
                         className="btn-primary"
                         onClick={handleSubmitBooking}
                       >
-                        Confirm Booking <Check className="ml-2 h-4 w-4" />
+                        {tb.confirmation.confirmBooking} <Check className="ml-2 h-4 w-4" />
                       </Button>
                     </div>
                   </>
@@ -829,15 +841,15 @@ export default function BookingPage() {
                     <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
                       <Check className="h-8 w-8 text-green-600 dark:text-green-400" />
                     </div>
-                    <h2 className="text-2xl font-bold mb-2">Booking Confirmed!</h2>
+                    <h2 className="text-2xl font-bold mb-2">{tb.confirmation.success}</h2>
                     <p className="text-muted-foreground mb-6">
-                      Your reservation has been successfully confirmed. A confirmation email has been sent to {formData.email}.
+                      {tb.confirmation.emailSent} {formData.email}.
                     </p>
                     <p className="font-medium mb-8">
-                      Booking Reference: <span className="text-primary">MRS-{Math.floor(Math.random() * 10000).toString().padStart(4, '0')}</span>
+                      {tb.confirmation.bookingReference}: <span className="text-primary">MRS-{Math.floor(Math.random() * 10000).toString().padStart(4, '0')}</span>
                     </p>
                     <Button asChild className="btn-primary">
-                      <Link to="/">Return to Homepage</Link>
+                      <Link to="/">{tb.confirmation.returnToHome}</Link>
                     </Button>
                   </div>
                 )}

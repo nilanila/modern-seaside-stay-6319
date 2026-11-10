@@ -104,7 +104,8 @@ export const it = {
       guests: "Ospiti",
       selected: "Selezionato",
       select: "Seleziona",
-      continue: "Continua"
+      continue: "Continua",
+      perNight: "/ notte"
     },
     guestInfo: {
       title: "Informazioni Ospite",
@@ -141,7 +142,8 @@ export const it = {
       nights: "notti",
       cleaningFee: "Costo pulizie",
       serviceFee: "Costo servizio",
-      total: "Totale"
+      total: "Totale",
+      notSelected: "Non selezionato"
     },
     confirmation: {
       title: "Rivedi Dettagli Prenotazione",
@@ -160,9 +162,12 @@ export const it = {
       termsAgree: "Accetto i",
       termsLink: "Termini e Condizioni",
       privacyLink: "Politica sulla Privacy",
+      and: "e",
       cancellationInfo: "Comprendo che la mia prenotazione è soggetta alla politica di cancellazione della struttura.",
       back: "Indietro",
       confirmBooking: "Conferma Prenotazione",
+      reviewConfirm: "Rivedi e Conferma",
+      endingIn: "che termina con",
       success: "Prenotazione Confermata!",
       emailSent: "La tua prenotazione è stata confermata con successo. Una email di conferma è stata inviata a",
       bookingReference: "Riferimento Prenotazione",

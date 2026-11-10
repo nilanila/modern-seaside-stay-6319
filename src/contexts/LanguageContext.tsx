@@ -1,5 +1,6 @@
 
 import React, { createContext, useState, useEffect, useContext, ReactNode } from 'react';
+import { enUS, it as itLocale, type Locale } from 'date-fns/locale';
 import { en } from '../locales/en';
 import { it } from '../locales/it';
 
@@ -9,11 +10,17 @@ interface LanguageContextType {
   language: string;
   setLanguage: (lang: string) => void;
   t: Translations;
+  dateLocale: Locale;
 }
 
 const translations: Record<string, Translations> = {
   en,
   it
+};
+
+const dateLocales: Record<string, Locale> = {
+  en: enUS,
+  it: itLocale
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -30,6 +37,10 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
   const changeLanguage = (lang: string) => {
     if (translations[lang]) {
       setLanguage(lang);
@@ -39,7 +50,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: changeLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage: changeLanguage, t, dateLocale: dateLocales[language] ?? enUS }}>
       {children}
     </LanguageContext.Provider>
   );
