@@ -6,6 +6,7 @@ export const de = {
     gallery: "Galerie",
     prices: "Preise",
     contact: "Kontakt",
+    about: "Über uns",
     bookNow: "Jetzt buchen"
   },
   hero: {
@@ -393,6 +394,63 @@ export const de = {
           }
         ]
       }
+    }
+  },
+  about: {
+    title: "Über uns",
+    subtitle: "Lernen Sie die Geschichte, die Menschen und die Werte hinter MareSereno kennen.",
+    story: {
+      subtitle: "Unsere Geschichte",
+      title: "Ein Zuhause am Meer seit 1998",
+      paragraph1: "MareSereno begann als kleines Familienhotel mit zwölf Zimmern direkt an der Mittelmeerküste. Was als Leidenschaft für Gastfreundschaft und die Liebe zum Meer begann, ist heute eine der beliebtesten Luxusadressen der Region.",
+      paragraph2: "Über die Jahre haben wir unsere Anlage behutsam erweitert, ohne dabei den familiären Charakter zu verlieren. Jedes Apartment und jedes Zimmer wurde mit Liebe zum Detail gestaltet, um unseren Gästen Ruhe, Komfort und einen unvergleichlichen Blick auf das Meer zu bieten.",
+      paragraph3: "Heute begrüßen wir Gäste aus aller Welt und freuen uns besonders, dass viele von ihnen Jahr für Jahr zu uns zurückkehren. Für uns ist das der schönste Beweis, dass wir unserer Philosophie treu geblieben sind."
+    },
+    stats: [
+      { value: "25+", label: "Jahre Erfahrung" },
+      { value: "48", label: "Apartments & Zimmer" },
+      { value: "12.000+", label: "Zufriedene Gäste" },
+      { value: "4,9", label: "Durchschnittliche Bewertung" }
+    ],
+    values: {
+      subtitle: "Unsere Werte",
+      title: "Was uns ausmacht",
+      description: "Diese Grundsätze leiten uns jeden Tag und prägen jedes Erlebnis bei MareSereno.",
+      items: [
+        {
+          title: "Herzliche Gastfreundschaft",
+          description: "Wir behandeln jeden Gast wie einen Freund der Familie und nehmen uns Zeit für Ihre persönlichen Wünsche."
+        },
+        {
+          title: "Nachhaltigkeit",
+          description: "Wir schützen das Meer und die Küste, die wir lieben, durch Solarenergie, Wassersparmaßnahmen und regionale Partner."
+        },
+        {
+          title: "Regionale Verbundenheit",
+          description: "Von der Küche bis zur Einrichtung arbeiten wir eng mit lokalen Produzenten und Handwerkern zusammen."
+        },
+        {
+          title: "Qualität im Detail",
+          description: "Von der Bettwäsche bis zum Frühstück achten wir auf höchste Qualität in allem, was wir tun."
+        }
+      ]
+    },
+    team: {
+      subtitle: "Unser Team",
+      title: "Die Menschen hinter MareSereno",
+      description: "Ein engagiertes Team, das rund um die Uhr für Sie da ist und Ihren Aufenthalt zu etwas Besonderem macht.",
+      members: [
+        { name: "Elena Rossi", role: "Direktorin & Gründerfamilie" },
+        { name: "Marco Bianchi", role: "Leiter der Rezeption" },
+        { name: "Sofia Conti", role: "Küchenchefin" },
+        { name: "Luca Ferrari", role: "Gästebetreuung & Concierge" }
+      ]
+    },
+    cta: {
+      title: "Werden Sie Teil unserer Geschichte",
+      description: "Wir freuen uns darauf, Sie bei MareSereno willkommen zu heißen.",
+      button: "Jetzt buchen",
+      contact: "Kontakt aufnehmen"
     }
   }
 };

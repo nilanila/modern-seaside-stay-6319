@@ -6,6 +6,7 @@ export const it = {
     gallery: "Galleria",
     prices: "Prezzi",
     contact: "Contatti",
+    about: "Chi Siamo",
     bookNow: "Prenota Ora"
   },
   hero: {
@@ -393,6 +394,63 @@ export const it = {
     "6": {
       name: "Appartamento Vista Giardino",
       description: "Appartamento tranquillo circondato da rigogliosi giardini, a breve distanza dalla spiaggia."
+    }
+  },
+  about: {
+    title: "Chi Siamo",
+    subtitle: "Scopri la storia, le persone e i valori dietro MareSereno.",
+    story: {
+      subtitle: "La Nostra Storia",
+      title: "Una Casa sul Mare dal 1998",
+      paragraph1: "MareSereno è nato come un piccolo hotel a conduzione familiare con dodici camere direttamente sulla costa mediterranea. Ciò che è iniziato come passione per l'ospitalità e amore per il mare è diventato uno degli indirizzi di lusso più amati della regione.",
+      paragraph2: "Nel corso degli anni abbiamo ampliato con cura la nostra struttura senza perderne il carattere familiare. Ogni appartamento e ogni camera sono stati progettati con attenzione ai dettagli per offrire ai nostri ospiti tranquillità, comfort e una vista impareggiabile sul mare.",
+      paragraph3: "Oggi accogliamo ospiti da tutto il mondo e siamo particolarmente orgogliosi che molti di loro tornino da noi anno dopo anno. Per noi è la prova più bella di essere rimasti fedeli alla nostra filosofia."
+    },
+    stats: [
+      { value: "25+", label: "Anni di Esperienza" },
+      { value: "48", label: "Appartamenti & Camere" },
+      { value: "12.000+", label: "Ospiti Soddisfatti" },
+      { value: "4,9", label: "Valutazione Media" }
+    ],
+    values: {
+      subtitle: "I Nostri Valori",
+      title: "Ciò che ci Distingue",
+      description: "Questi principi ci guidano ogni giorno e plasmano ogni esperienza a MareSereno.",
+      items: [
+        {
+          title: "Ospitalità Calorosa",
+          description: "Trattiamo ogni ospite come un amico di famiglia e ci prendiamo il tempo per soddisfare i tuoi desideri personali."
+        },
+        {
+          title: "Sostenibilità",
+          description: "Proteggiamo il mare e la costa che amiamo grazie all'energia solare, al risparmio idrico e a partner locali."
+        },
+        {
+          title: "Radici Locali",
+          description: "Dalla cucina agli arredi, collaboriamo strettamente con produttori e artigiani del territorio."
+        },
+        {
+          title: "Qualità nei Dettagli",
+          description: "Dalla biancheria alla colazione, pretendiamo la massima qualità in tutto ciò che facciamo."
+        }
+      ]
+    },
+    team: {
+      subtitle: "Il Nostro Team",
+      title: "Le Persone dietro MareSereno",
+      description: "Un team dedicato, a tua disposizione 24 ore su 24, che rende il tuo soggiorno davvero speciale.",
+      members: [
+        { name: "Elena Rossi", role: "Direttrice & Famiglia Fondatrice" },
+        { name: "Marco Bianchi", role: "Responsabile Reception" },
+        { name: "Sofia Conti", role: "Chef di Cucina" },
+        { name: "Luca Ferrari", role: "Relazioni con gli Ospiti & Concierge" }
+      ]
+    },
+    cta: {
+      title: "Entra a Far Parte della Nostra Storia",
+      description: "Non vediamo l'ora di darti il benvenuto a MareSereno.",
+      button: "Prenota Ora",
+      contact: "Contattaci"
     }
   }
 };

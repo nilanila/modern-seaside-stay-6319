@@ -6,6 +6,7 @@ export const en = {
     gallery: "Gallery",
     prices: "Prices",
     contact: "Contact",
+    about: "About Us",
     bookNow: "Book Now"
   },
   hero: {
@@ -393,6 +394,63 @@ export const en = {
           }
         ]
       }
+    }
+  },
+  about: {
+    title: "About Us",
+    subtitle: "Discover the story, the people, and the values behind MareSereno.",
+    story: {
+      subtitle: "Our Story",
+      title: "A Home by the Sea Since 1998",
+      paragraph1: "MareSereno began as a small family-run hotel with twelve rooms right on the Mediterranean coast. What started as a passion for hospitality and a love of the sea has grown into one of the region's most beloved luxury addresses.",
+      paragraph2: "Over the years we have carefully expanded our property without losing its family character. Every apartment and room has been designed with attention to detail to offer our guests tranquility, comfort, and an unrivaled view of the sea.",
+      paragraph3: "Today we welcome guests from all over the world, and we are especially proud that so many of them return to us year after year. To us, that is the finest proof that we have stayed true to our philosophy."
+    },
+    stats: [
+      { value: "25+", label: "Years of Experience" },
+      { value: "48", label: "Apartments & Rooms" },
+      { value: "12,000+", label: "Happy Guests" },
+      { value: "4.9", label: "Average Rating" }
+    ],
+    values: {
+      subtitle: "Our Values",
+      title: "What Defines Us",
+      description: "These principles guide us every day and shape every experience at MareSereno.",
+      items: [
+        {
+          title: "Warm Hospitality",
+          description: "We treat every guest like a friend of the family and take the time to attend to your personal wishes."
+        },
+        {
+          title: "Sustainability",
+          description: "We protect the sea and coastline we love through solar energy, water-saving measures, and regional partners."
+        },
+        {
+          title: "Local Roots",
+          description: "From the kitchen to the furnishings, we work closely with local producers and artisans."
+        },
+        {
+          title: "Quality in Every Detail",
+          description: "From the bed linen to breakfast, we insist on the highest quality in everything we do."
+        }
+      ]
+    },
+    team: {
+      subtitle: "Our Team",
+      title: "The People Behind MareSereno",
+      description: "A dedicated team that is there for you around the clock and makes your stay something special.",
+      members: [
+        { name: "Elena Rossi", role: "Director & Founding Family" },
+        { name: "Marco Bianchi", role: "Head of Reception" },
+        { name: "Sofia Conti", role: "Head Chef" },
+        { name: "Luca Ferrari", role: "Guest Relations & Concierge" }
+      ]
+    },
+    cta: {
+      title: "Become Part of Our Story",
+      description: "We look forward to welcoming you to MareSereno.",
+      button: "Book Now",
+      contact: "Get in Touch"
     }
   }
 };
